@@ -1,22 +1,18 @@
-package com.sys.a9store.screens
+package com.sys.a9store.presentation.screens
 
 import CartPage
 import HomePage
 import ProductsPage
 import ProfilePage
-import android.graphics.drawable.Icon
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import ScanCode
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.ShoppingCart
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -27,22 +23,23 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
-import com.google.firebase.Firebase
-import com.google.firebase.auth.auth
+import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavController
+import androidx.navigation.compose.currentBackStackEntryAsState
+import com.sys.a9store.BarCodeScreen
+import com.sys.a9store.R
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier, navController: NavHostController) {
+fun HomeScreen(modifier: Modifier = Modifier, navController: NavController) {
 
     val navItemList = listOf(
-        NavItem("ပင်မ", Icons.Default.Home),
-        NavItem("စျေးခြင်း", Icons.Default.ShoppingCart),
-        NavItem("ကုန်ပစ္စည်းများ", Icons.Default.List),
-        NavItem("အကောင့်", Icons.Default.Person),
+        NavItem(R.string.home, "home", Icons.Default.Home),
+        NavItem(R.string.cart, "cart", Icons.Default.ShoppingCart),
+        NavItem(R.string.scan, "scan", Icons.Default.Search),
+        NavItem(R.string.products, "products", Icons.Default.List),
+        NavItem(R.string.profile, "profile", Icons.Default.Person),
     )
     var selectedIndex by remember {
         mutableStateOf(0)
@@ -54,10 +51,13 @@ fun HomeScreen(modifier: Modifier = Modifier, navController: NavHostController) 
                     NavigationBarItem(selected = index == selectedIndex, onClick = {
                         selectedIndex = index
                     }, icon = {
-                        Icon(imageVector = navItem.icon, contentDescription = navItem.label)
+                        Icon(
+                            imageVector = navItem.icon,
+                            contentDescription = stringResource(navItem.title)
+                        )
                     },
                         label = {
-                            Text(text = navItem.label)
+                            Text(stringResource(navItem.title))
                         }
                     )
 
@@ -75,14 +75,15 @@ fun ContentScreen(modifier: Modifier = Modifier, selectedIndex: Int) {
     when (selectedIndex) {
         0 -> HomePage()
         1 -> CartPage()
-        2 -> ProductsPage()
-        3 -> ProfilePage()
+        2 -> BarCodeScreen(modifier)
+        3 -> ProductsPage()
+        4 -> ProfilePage()
     }
 
 }
 
-
 data class NavItem(
-    val label: String,
+    @StringRes val title: Int,
+    val route: String,
     val icon: ImageVector
 )

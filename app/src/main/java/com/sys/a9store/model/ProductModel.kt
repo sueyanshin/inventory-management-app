@@ -5,6 +5,7 @@ import com.google.firebase.firestore.DocumentId
 
 data class ProductModel(
     @DocumentId val id: String = "",
+    val productCode: String = "",
     val name: String = "",
     val purchasedPrice: Double = 0.0,
     val sellingPrice: Double = 0.0,
@@ -17,6 +18,7 @@ data class ProductModel(
 
     // Helper function to convert to Map for Firestore
     fun toMap(): Map<String, Any> = mapOf(
+        "productCode" to productCode,
         "name" to name,
         "purchasedPrice" to purchasedPrice,
         "sellingPrice" to sellingPrice,

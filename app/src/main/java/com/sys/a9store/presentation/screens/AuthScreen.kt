@@ -1,4 +1,4 @@
-package com.sys.a9store.screens
+package com.sys.a9store.presentation.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

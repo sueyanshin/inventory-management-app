@@ -1,4 +1,4 @@
-package com.sys.a9store.ui.theme
+package com.sys.a9store.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 

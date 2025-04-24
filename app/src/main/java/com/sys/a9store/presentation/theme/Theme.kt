@@ -1,4 +1,4 @@
-package com.sys.a9store.ui.theme
+package com.sys.a9store.presentation.theme
 
 import android.app.Activity
 import android.os.Build

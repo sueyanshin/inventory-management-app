@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">A9 Store</string>
+
+<!--    Navigation-->
+    <string name="home">ပင်မစာမျက်နှာ</string>
+    <string name="scan">စကင်</string>
+    <string name="sales">အရောင်းများ</string>
+    <string name="cart">စျေးခြင်း</string>
+    <string name="profile">အကောင့်</string>
+    <string name="products">ကုန်ပစ္စည်းများ</string>
+    <string name="categories">အမျိုးအစားများ</string>
+
+<!--    Toast Messages-->
+<!--    <string name=""></string>-->
+<!--    <string name=""></string>-->
+<!--    <string name=""></string>-->
+
+
 </resources>
